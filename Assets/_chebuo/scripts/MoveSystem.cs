@@ -14,10 +14,4 @@ partial struct MoveSystem : ISystem
             transform.ValueRW.Position += new float3(1, 0, 0) * move.ValueRO.speed * deltaTime;
         }
     }
-
-    [BurstCompile]
-    public void OnDestroy(ref SystemState state)
-    {
-        
-    }
 }
