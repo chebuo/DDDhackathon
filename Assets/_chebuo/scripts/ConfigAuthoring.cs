@@ -7,6 +7,7 @@ public struct Config : IComponentData
     public Entity prefab;
     public float3 startPos;
     public float3 endPos;
+    public int interval;
 }
 
 public class ConfigAuthoring : MonoBehaviour
@@ -14,6 +15,7 @@ public class ConfigAuthoring : MonoBehaviour
     public GameObject _prefab;
     public Vector3 _startPos;
     public Vector3 _endPos;
+    public int _interval;
 
     class Baker : Baker<ConfigAuthoring>
     {
@@ -23,7 +25,8 @@ public class ConfigAuthoring : MonoBehaviour
             {
                 prefab=GetEntity(authoring._prefab, TransformUsageFlags.Dynamic),
                 startPos=(float3)authoring._startPos,
-                endPos=(float3)authoring._endPos
+                endPos=(float3)authoring._endPos,
+                interval=authoring._interval
             };
             AddComponent(GetEntity(TransformUsageFlags.Dynamic),data);
         }
