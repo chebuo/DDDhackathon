@@ -14,7 +14,6 @@ partial struct SpawnSystem : ISystem
     {
         foreach (var spawn in SystemAPI.Query<RefRW<Spawn>>())
         {
-            //var entity=state.EntityManager.Instantiate(spawn.ValueRW.dish);
             spawn.ValueRW.timer+=SystemAPI.Time.DeltaTime;
             if(spawn.ValueRO.timer>spawn.ValueRO.spawnInterval)
             {
