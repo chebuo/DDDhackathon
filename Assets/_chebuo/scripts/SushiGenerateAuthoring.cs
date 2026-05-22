@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Rendering;
 using UnityEngine;
 
 public struct SushiGenerate : IBufferElementData
@@ -8,17 +9,18 @@ public struct SushiGenerate : IBufferElementData
 
 public class SushiGenerateAuthoring : MonoBehaviour
 {
-    public GameObject[] _sushi;
+    [SerializeField] SushiData sushiData;
+
     class Baker:Baker<SushiGenerateAuthoring>
     {
         public override void Bake(SushiGenerateAuthoring src)
         {
-            var buffer=AddBuffer<SushiGenerate>(GetEntity(TransformUsageFlags.Dynamic));
-            foreach (var sushi in src._sushi)
+            var buffer=AddBuffer<SushiGenerate>(GetEntity(TransformUsageFlags.Dynamic|TransformUsageFlags.Renderable));
+            foreach (var sushi in src.sushiData.sushiList)
             {
                 buffer.Add(new SushiGenerate()
                 {
-                    sushi=GetEntity(sushi, TransformUsageFlags.Dynamic)
+                    sushi=GetEntity(sushi, TransformUsageFlags.Dynamic|TransformUsageFlags.Renderable)
                 });
             }
         }

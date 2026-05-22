@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613676a25ea36741b397190bbc5ab3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SushiGenerateAuthoring
+  sushiData: {fileID: 11400000, guid: 3a5d22b38364d8e47b528f2d735792fe, type: 2}
   _sushi:
   - {fileID: 8049088060466092767, guid: 5e2db38e38f67d0478541c58655faa3b, type: 3}
   - {fileID: 8049088060466092767, guid: ce6726ce6249da14f8dbc7ff2e987ca2, type: 3}
