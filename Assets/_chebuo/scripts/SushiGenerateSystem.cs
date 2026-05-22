@@ -27,7 +27,7 @@ partial struct SushiGenerateSystem : ISystem
             {
                 Value = dish
             });
-            ecb.AddComponent(instance,LocalTransform.FromPosition(new float3(0, 0f, 0)));
+            ecb.AddComponent(instance,LocalTransform.FromPosition(new float3(0, 0.3f, 0)));
         
             ecb.RemoveComponent<DishTag>(dish);
         }
