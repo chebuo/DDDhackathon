@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SushiData
   m_EditorClassIdentifier: Assembly-CSharp::SushiData
   sushiLists:
-  - sushi: {fileID: 7730902206830998743, guid: 4d9a8ae704abbb140a36a23129635839, type: 3}
+  - sushi: {fileID: 8049088060466092767, guid: 5e2db38e38f67d0478541c58655faa3b, type: 3}
+  - sushi: {fileID: 8049088060466092767, guid: ce6726ce6249da14f8dbc7ff2e987ca2, type: 3}
