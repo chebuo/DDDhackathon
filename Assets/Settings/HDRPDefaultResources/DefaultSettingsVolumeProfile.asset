@@ -1420,48 +1420,7 @@ MonoBehaviour:
   m_Name: DefaultSettingsVolumeProfile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 7686318427622180703}
-  - {fileID: -1016694868962581565}
-  - {fileID: 7502528774814404555}
-  - {fileID: 7542669330009093999}
-  - {fileID: 1501199423866068322}
-  - {fileID: 5315503232242033309}
-  - {fileID: 1932259527246508038}
-  - {fileID: 448115243408767295}
-  - {fileID: -7089757308646879465}
-  - {fileID: -8500501345142028434}
-  - {fileID: 2097231660816403494}
-  - {fileID: -2885502476280352339}
-  - {fileID: -6683264937948842006}
-  - {fileID: -349763288966572108}
-  - {fileID: 2434171035424581208}
-  - {fileID: 4184959278846124440}
-  - {fileID: -457778779235881194}
-  - {fileID: -5692892359979190020}
-  - {fileID: 1193641997669563142}
-  - {fileID: -5699485013106037889}
-  - {fileID: 3983327871327346081}
-  - {fileID: -3997918015730655364}
-  - {fileID: -4580390321833865846}
-  - {fileID: -8396314121508145036}
-  - {fileID: 36308901171096177}
-  - {fileID: 1644883863456263709}
-  - {fileID: 564137959654137975}
-  - {fileID: -6639602523790524828}
-  - {fileID: 255843400446791465}
-  - {fileID: -7017788088471342208}
-  - {fileID: -8125408223432578616}
-  - {fileID: -7436735404098711897}
-  - {fileID: -5028016853122346733}
-  - {fileID: -7293828152797222589}
-  - {fileID: -1551934058624522593}
-  - {fileID: 6651477639721064420}
-  - {fileID: -4159551860026461518}
-  - {fileID: 8163062257352222263}
-  - {fileID: 995929904741078697}
-  - {fileID: -977882156937646726}
-  - {fileID: -8591837152937443701}
-  - {fileID: -1985701381959323764}
+  - {fileID: 5736936990784463331}
 --- !u!114 &36308901171096177
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2439,6 +2398,24 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 1
     m_Value: 0.5
+--- !u!114 &5736936990784463331
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.DiffusionProfileList
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: 404820c4cf36ad944862fa59c56064f0, type: 2}
+    - {fileID: 11400000, guid: 2384dbf2c1c420f45a792fbc315fbfb1, type: 2}
 --- !u!114 &6651477639721064420
 MonoBehaviour:
   m_ObjectHideFlags: 3
