@@ -21,5 +21,5 @@ EditorBuildSettings:
     path: Assets/_uukino/scenes/uukino.unity
     guid: 4bc06b594cf60dc4bbea91b33f272951
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2a6f0222bec6ebc4b8c2b91491bd0caa, type: 3}
   m_UseUCBPForAssetBundles: 0
