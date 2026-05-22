@@ -580,6 +580,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8729ab4409261bf4ca2aa51f4be4dc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  vertical:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Vertical
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 24b1269f-2342-4b14-a617-1a1cbdf3d55a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -2039315895049208760, guid: 663d124a4d1918545be6f8bc740ecbd6, type: 3}
 --- !u!114 &1065472750
 MonoBehaviour:
   m_ObjectHideFlags: 0

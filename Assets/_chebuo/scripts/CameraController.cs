@@ -9,8 +9,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         move=InputSystem.actions.FindAction("Move");
-        Debug.Log(move);
-        Debug.Log(vertical);
         move.Enable();
     }
 
