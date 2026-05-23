@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConfigAuthoring
   _prefab: {fileID: 1581950364113743271, guid: 17f1c8f96f5fa1940a4114aec184839b, type: 3}
   _startPos: {x: -124, y: -0.3, z: -10}
-  _endPos: {x: 480, y: -0.3, z: 0}
+  _endPos: {x: 380, y: -0.3, z: 0}
   _interval: 4
 --- !u!4 &273299554
 Transform:
@@ -446,8 +446,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConfigAuthoring
   _prefab: {fileID: 6744615094800889488, guid: 1a7a279f41dd31f4eb5989f6e734b1f4, type: 3}
-  _startPos: {x: -124, y: -0.3, z: -10}
-  _endPos: {x: 480, y: -0.3, z: 0}
+  _startPos: {x: -92, y: -0.3, z: -10}
+  _endPos: {x: 350, y: -0.3, z: 0}
   _interval: 6
 --- !u!4 &439470747
 Transform:
@@ -1040,8 +1040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConfigAuthoring
   _prefab: {fileID: 6744615094800889488, guid: a64237c5fc347074c910ffc83a596715, type: 3}
-  _startPos: {x: -124, y: -0.3, z: 0}
-  _endPos: {x: 480, y: -0.3, z: 0}
+  _startPos: {x: -92, y: -0.3, z: 0}
+  _endPos: {x: 350, y: -0.3, z: 0}
   _interval: 6
 --- !u!4 &988655850
 Transform:
@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConfigAuthoring
   _prefab: {fileID: 682150615866453760, guid: 64dfca3318ede304c8b72c90c77b4700, type: 3}
   _startPos: {x: -124, y: -0.3, z: 0}
-  _endPos: {x: 480, y: -0.3, z: 0}
+  _endPos: {x: 380, y: -0.3, z: 0}
   _interval: 4
 --- !u!4 &1831387790
 Transform:
