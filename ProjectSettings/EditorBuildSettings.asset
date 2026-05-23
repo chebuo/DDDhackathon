@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_chebuo/scenes/DtoSushii.unity
+    guid: 273b03f2fd016014d99f972635116ede
+  - enabled: 0
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 1
@@ -20,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_uukino/scenes/uukino.unity
     guid: 4bc06b594cf60dc4bbea91b33f272951
+  - enabled: 1
+    path: Assets/_chebuo/scenes/MenuSelect.unity
+    guid: 446fc6091d239b448a71a9e752aebfd1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2a6f0222bec6ebc4b8c2b91491bd0caa, type: 3}
   m_UseUCBPForAssetBundles: 0
