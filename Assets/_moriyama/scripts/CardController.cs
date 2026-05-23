@@ -9,9 +9,12 @@ public class CardController : MonoBehaviour, IPointerClickHandler
     public CardView view; // カードの見た目の処理
     public CardModel model; // カードのデータを処理
 
-    public bool isInField = false;
     Vector3 defaultScale;
+    public bool isPlayerCard;//true=player false=Enemy
+    public bool isInField = false;
+    public bool canAttack = false;
     bool isSelected = false;
+    
 
     private void Start()
     {
@@ -42,12 +45,46 @@ public class CardController : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        UIManager manager = FindObjectOfType<UIManager>();
+        
         if(isInField)
+        {
+            if(isPlayerCard)
+            {
+                if(!canAttack)
+                {
+                    return;
+                }
+
+                manager.attackingCard = this;
+
+                Debug.Log(model.name+"が攻撃選択状態");
+
+                return;
+            }
+            else
+            {
+                if(manager.attackingCard == null)
+                {
+                    return;
+                }
+
+                Battle(manager.attackingCard);
+
+                manager.attackingCard = null;
+
+                return;
+            }
+        }
+
+        if(manager.isPlayerTurn == false)
         {
             return;
         }
-
-        UIManager manager = FindObjectOfType<UIManager>();
+        if(!isPlayerCard)
+        {
+            return;
+        }
 
         if(manager.selectedCard != null)
         {
@@ -57,5 +94,13 @@ public class CardController : MonoBehaviour, IPointerClickHandler
         manager.selectedCard = this;
 
         Select();
+    }
+    void Battle(CardController attacker)
+    {
+        Debug.Log(attacker.model.name + " → " + model.name);
+
+        Destroy(attacker.gameObject);
+
+        Destroy(gameObject);
     }
 }

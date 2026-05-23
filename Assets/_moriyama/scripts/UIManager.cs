@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] Transform playerField;
     [SerializeField] Transform enemyHand;
     [SerializeField] Transform enemyField;
+    [SerializeField] Transform enemySlot1;
 
     public CardController selectedCard;
+    public CardController attackingCard;
     public bool isPlayerTurn = true;
 
  
@@ -23,10 +25,16 @@ public class UIManager : MonoBehaviour
 
     void StartGame()
     {
-        CreateCard(3, playerHand);
-        CreateCard(2, playerHand);
-        CreateCard(1, playerHand);
-        CreateCard(0, playerHand);
+        CreateCard(3, playerHand, true);
+        CreateCard(2, playerHand, true);
+        CreateCard(1, playerHand, true);
+        CreateCard(0, playerHand, true);
+
+        CreateCard(3, enemyHand, false);
+        CreateCard(2, enemyHand, false);
+        CreateCard(1, enemyHand, false);
+        CreateCard(0, enemyHand, false);
+        CreateCard(2, enemySlot1, false, true);
     }
 
     public void EndTurn()
@@ -35,6 +43,15 @@ public class UIManager : MonoBehaviour
 
         if(isPlayerTurn)
         {
+            foreach(CardController card in FindObjectsOfType<CardController>())
+            {
+                if(card.isPlayerCard == isPlayerTurn && card.isInField)
+                {
+                    card.canAttack = true;
+
+                    Debug.Log(card.model.name+"が攻撃可能");
+                }
+            }
             Debug.Log("PlayerTurn");
         }
         else
@@ -44,10 +61,15 @@ public class UIManager : MonoBehaviour
     }
 
     // カードを生成するメソッド
-    void CreateCard(int cardId, Transform trans)
+    void CreateCard(int cardId, Transform trans, bool isPlayer, bool inField = false)
     {
         // cardPrefabをtransに生成する
         CardController card = Instantiate(cardPrefab, trans);
+
         card.Init(cardId);
+
+        card.isPlayerCard = isPlayer;
+
+        card.isInField = inField;
     }
 }

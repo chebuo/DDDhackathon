@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class FieldSlot :MonoBehaviour, IPointerClickHandler
 {
+    public bool isPlayerField;
     public void OnPointerClick(PointerEventData eventData)
     {
         UIManager manager = FindObjectOfType<UIManager>();
@@ -11,10 +12,16 @@ public class FieldSlot :MonoBehaviour, IPointerClickHandler
         {
             return;
         }
+        if(manager.selectedCard.isPlayerCard != isPlayerField)
+        {
+            return;
+        }
 
         manager.selectedCard.transform.SetParent(transform);
 
         manager.selectedCard.isInField = true;
+
+        manager.selectedCard.canAttack = false;
 
         manager.selectedCard.transform.localPosition = Vector3.zero;
 
