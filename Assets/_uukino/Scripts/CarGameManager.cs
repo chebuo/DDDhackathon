@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class CarGameManager : MonoBehaviour
 {
     [Header("レーサー（車）")]
     public SlotCarController p1Car;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("システムUI")]
     public Text systemMessageText; 
 
-    // --- ★追加：効果音 ---
+    // --- ★効果音 ---
     [Header("効果音")]
     public AudioSource audioSource;
     public AudioClip countdownSE; // 「ピッ」
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        // ★追加：カウントダウン音
+        // カウントダウン音
         if (systemMessageText != null) systemMessageText.text = "3";
         if (audioSource && countdownSE) audioSource.PlayOneShot(countdownSE);
         yield return new WaitForSeconds(1f);
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         if (systemMessageText != null) systemMessageText.text = "GO!!";
-        if (audioSource && startSE) audioSource.PlayOneShot(startSE); // ★追加：スタート音
+        if (audioSource && startSE) audioSource.PlayOneShot(startSE); // スタート音
 
         p1Car.CanDrive = true;
         p2Car.CanDrive = true;
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     void ShowFinalResult()
     {
-        // ★追加：リザルト音
+        // リザルト音
         if (audioSource && resultSE) audioSource.PlayOneShot(resultSE);
 
         string resultMsg = "【最終結果】\n";
