@@ -97,10 +97,27 @@ public class CardController : MonoBehaviour, IPointerClickHandler
     }
     void Battle(CardController attacker)
     {
-        Debug.Log(attacker.model.name + " → " + model.name);
+        int AttackerPower = attacker.model.power;
+        int defenderPower = model.power;
 
-        Destroy(attacker.gameObject);
+        Debug.Log(attacker.model.name +"(" + AttackerPower + ")" + " vs " + 
+         model.name + "(" + defenderPower + ")");
 
-        Destroy(gameObject);
+        if(AttackerPower > defenderPower)
+        {
+            Destroy(gameObject);
+            attacker.canAttack = false;
+        }
+        else if(AttackerPower < defenderPower)
+        {
+            Destroy(attacker.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            Destroy(attacker.gameObject);
+        }
+
+        
     }
 }
