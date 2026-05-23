@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 450924221a405f048960cf4e4083b629, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 450924221a405f048960cf4e4083b629, type: 3}
       propertyPath: m_LocalPosition.y
@@ -73,6 +73,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 450924221a405f048960cf4e4083b629, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2659694903174027522}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 450924221a405f048960cf4e4083b629, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7084135317336071157}
   m_SourcePrefab: {fileID: 100100000, guid: 450924221a405f048960cf4e4083b629, type: 3}
 --- !u!1 &6744615094800889488 stripped
 GameObject:
@@ -117,6 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SushiGenerateAuthoring
   sushiData: {fileID: 11400000, guid: 3a5d22b38364d8e47b528f2d735792fe, type: 2}
-  _sushi:
-  - {fileID: 8049088060466092767, guid: 5e2db38e38f67d0478541c58655faa3b, type: 3}
-  - {fileID: 8049088060466092767, guid: ce6726ce6249da14f8dbc7ff2e987ca2, type: 3}
+--- !u!114 &7084135317336071157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744615094800889488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c282dca2e5039434e8abad5bcfae5959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyTagAuthoring
