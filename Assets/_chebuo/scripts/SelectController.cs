@@ -37,4 +37,9 @@ public class SelectController : MonoBehaviour
     {
         SceneManager.LoadScene(gameSelectData.games[index].gameScene);
     }
+
+    public void MoveTitle()
+    {
+        SceneManager.LoadScene("DtoSushi");
+    }
 }

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_chebuo/scenes/DtoSushii.unity
+    path: Assets/_chebuo/scenes/DtoSushi.unity
     guid: 273b03f2fd016014d99f972635116ede
   - enabled: 0
     path: Assets/OutdoorsScene.unity
