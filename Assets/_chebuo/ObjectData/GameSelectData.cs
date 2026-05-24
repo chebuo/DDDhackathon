@@ -12,4 +12,5 @@ public class GameList
 {
     public string gameScene;
     public Sprite gameIcon;
+    public string gameName;
 }
