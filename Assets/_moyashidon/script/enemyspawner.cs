@@ -3,6 +3,7 @@ using UnityEngine;
 public class enemyspawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public float spawnInterval = 1f;
     float timer = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +15,7 @@ public class enemyspawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 1f){
+        if (timer > spawnInterval){
             timer = 0f;
             GameObject enemy = Instantiate(enemyPrefab, transform.position, transform.rotation);
             enemy.transform.position = new Vector3(12, Random.Range(-4f, 4f), 0);
