@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
+    public float speed = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,7 +13,7 @@ public class enemy : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-        transform.Translate(-1f * Time.deltaTime, 0, 0);
+        transform.Translate(-speed * Time.deltaTime, 0, 0);
             if (transform.position.x < -15)
             {
                 Destroy(gameObject);
