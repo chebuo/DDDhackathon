@@ -6,11 +6,13 @@ public class SelectController : MonoBehaviour
 {
     [SerializeField] GameSelectData gameSelectData;
     [SerializeField] Image gameIcon;
+    [SerializeField] Text titleText;
     int index=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
+        titleText.text = gameSelectData.games[index].gameName;
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class SelectController : MonoBehaviour
         index++;
         if(index>=gameSelectData.games.Count)index=0;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
+        titleText.text = gameSelectData.games[index].gameName;
     }
 
     public void BackClick()
