@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEntity
   cardId: 2
   name: "\u30DE\u30B0\u30ED"
+  cost: 5000
   power: 5000
   description: SAMA
+  cardImage: {fileID: 0}

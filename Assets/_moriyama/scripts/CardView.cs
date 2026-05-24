@@ -7,7 +7,7 @@ using TMPro;
  
 public class CardView : MonoBehaviour
 {
-    //[SerializeField] TextMeshProUGUI costText;
+    [SerializeField] TextMeshProUGUI costText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI powerText;
     [SerializeField] TextMeshProUGUI descriptionText;
@@ -17,8 +17,12 @@ public class CardView : MonoBehaviour
     {
         nameText.text = cardModel.name;
         iconImage.sprite = cardModel.cardImage;
-        //costText.text = cardModel.cost.ToString();
-        powerText.text = cardModel.power.ToString();
+        costText.text = cardModel.cost.ToString();
+        powerText.text = cardModel.currentPower.ToString();
         descriptionText.text = cardModel.description;
+    }
+    public void Refresh(CardModel model)
+    {
+        powerText.text = model.currentPower.ToString();
     }
 }

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEntity
   cardId: 0
   name: "\u30B5\u30FC\u30E2\u30F3"
+  cost: 1000
   power: 2000
   description: SHAKE
+  cardImage: {fileID: 0}

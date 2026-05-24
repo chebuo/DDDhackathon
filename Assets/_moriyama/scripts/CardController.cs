@@ -49,7 +49,7 @@ public class CardController : MonoBehaviour, IPointerClickHandler
         
         if(isInField)
         {
-            if(isPlayerCard)
+            if(isPlayerCard == manager.isPlayerTurn)
             {
                 if(!canAttack)
                 {
@@ -77,15 +77,6 @@ public class CardController : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        if(manager.isPlayerTurn == false)
-        {
-            return;
-        }
-        if(!isPlayerCard)
-        {
-            return;
-        }
-
         if(manager.selectedCard != null)
         {
             manager.selectedCard.Deselect();
@@ -97,19 +88,23 @@ public class CardController : MonoBehaviour, IPointerClickHandler
     }
     void Battle(CardController attacker)
     {
-        int AttackerPower = attacker.model.power;
-        int defenderPower = model.power;
+        int attackerPower = attacker.model.currentPower;
+        int defenderPower = model.currentPower;
 
-        Debug.Log(attacker.model.name +"(" + AttackerPower + ")" + " vs " + 
+        Debug.Log(attacker.model.name +"(" + attackerPower + ")" + " vs " + 
          model.name + "(" + defenderPower + ")");
 
-        if(AttackerPower > defenderPower)
+        if(attackerPower > defenderPower)
         {
+            attacker.model.currentPower -= defenderPower;
+            attacker.view.Refresh(attacker.model);
             Destroy(gameObject);
             attacker.canAttack = false;
         }
-        else if(AttackerPower < defenderPower)
+        else if(attackerPower < defenderPower)
         {
+            model.currentPower -= attackerPower;
+            view.Refresh(model);
             Destroy(attacker.gameObject);
         }
         else
@@ -119,5 +114,33 @@ public class CardController : MonoBehaviour, IPointerClickHandler
         }
 
         
+    }
+    public void OnSummon()
+    {
+        if(model.effectID == 1)
+        {
+            DamageEnemyCard(1000);
+        }
+    }
+    void DamageEnemyCard(int damage)
+    {
+        foreach(CardController card in FindObjectsOfType<CardController>())
+        {
+            if(card.isPlayerCard != isPlayerCard && card.isInField)
+            {
+                card.model.currentPower -= damage;
+
+                card.view.Refresh(card.model);
+
+                Debug.Log(card.model.name + "に" + damage + "ダメージ");
+
+                if(card.model.currentPower <= 0)
+                {
+                    Destroy(card.gameObject);
+                }
+
+                return;
+            }
+        }
     }
 }
