@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -28,6 +29,15 @@ public class playerController : MonoBehaviour
                 Destroy(bullet, 5f);
                 Debug.Log("Shot!");
             }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("gameover"))
+        {
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
 }
