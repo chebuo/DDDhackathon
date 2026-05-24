@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class DeckManager : MonoBehaviour
 {
     [Header("連携するスクリプトとUI")]
-    public GameManager gameManager;
+    public CarGameManager gameManager;
     public GameObject menuPanel;
     public GameObject gameUIPanel;
 
@@ -69,7 +69,7 @@ public class DeckManager : MonoBehaviour
     {
         if (sushiIndex < 0 || sushiIndex >= availableSushi.Length) return;
         CarData data = availableSushi[sushiIndex];
-        if (specText != null) specText.text = $"【 {data.sushiName} 】\n価格: {data.price} 円\n最高速度: {data.maxSpeed}\n加速力: {data.acceleration}\n安定感: {data.derailThreshold}";
+        if (specText != null) specText.text = $"【 {data.sushiName} 】価格 : {data.price} 円 最高速度 : {data.maxSpeed} 加速力 : {data.acceleration} 安定感 : {data.derailThreshold}";
     }
 
     public void HideSushiSpecs()

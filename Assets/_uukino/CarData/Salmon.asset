@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarData
   sushiName: "\u30B5\u30FC\u30E2\u30F3"
   price: 100
-  modelPrefab: {fileID: 919132149155446097, guid: 8a5fba5529231b64c82aaf067f43165e, type: 3}
+  modelPrefab: {fileID: 3661336662251995956, guid: c56fa2a41ece45541a43d72e7a183228, type: 3}
   maxSpeed: 40
   acceleration: 20
   friction: 10
