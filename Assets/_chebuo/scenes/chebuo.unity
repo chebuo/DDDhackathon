@@ -592,6 +592,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -2039315895049208760, guid: 663d124a4d1918545be6f8bc740ecbd6, type: 3}
+  angle:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Angle
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: fe6590d5-6313-4943-93aa-7b276102f1e4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -7443717097032765775, guid: 663d124a4d1918545be6f8bc740ecbd6, type: 3}
 --- !u!114 &1065472750
 MonoBehaviour:
   m_ObjectHideFlags: 0
