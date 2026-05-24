@@ -11,6 +11,10 @@ public class tama : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0.2f, 0.0f, 0.0f);
+        transform.Translate(1f * Time.deltaTime, 0.0f, 0.0f);
+         if (transform.position.x > 15)
+        {
+             Destroy(gameObject);
+        }
     }
 }
