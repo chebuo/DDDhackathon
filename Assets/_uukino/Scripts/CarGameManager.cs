@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // ★追加：シーン移動に必要
 
 public class CarGameManager : MonoBehaviour
 {
@@ -15,13 +16,17 @@ public class CarGameManager : MonoBehaviour
     [Header("システムUI")]
     public Text systemMessageText; 
 
-    // --- ★効果音 ---
+    // --- ★追加：タイトルに戻るボタン関連 ---
+    [Header("シーン遷移")]
+    public GameObject returnToTitleButton; // タイトルに戻るボタン本体
+    public string titleSceneName = "TitleScene"; // タイトル画面のシーン名（正確に入力してください）
+    // ------------------------------------
+
     [Header("効果音")]
     public AudioSource audioSource;
     public AudioClip countdownSE; // 「ピッ」
     public AudioClip startSE;     // 「ポーン！」
     public AudioClip resultSE;    // 「ジャジャーン！」
-    // --------------------
 
     private int currentRound = 0;
     private bool isRacing = false;
@@ -33,6 +38,15 @@ public class CarGameManager : MonoBehaviour
     private int p2FinishCount = 0;
     private int p2TotalPrice = 0;
     private float p2TotalTime = 0f;
+
+    // ★追加：ゲーム開始時にボタンを隠す
+    void Start()
+    {
+        if (returnToTitleButton != null)
+        {
+            returnToTitleButton.SetActive(false);
+        }
+    }
 
     public void StartGameWithDecks(CarData[] p1, CarData[] p2)
     {
@@ -124,5 +138,14 @@ public class CarGameManager : MonoBehaviour
             }
         }
         if (systemMessageText != null) systemMessageText.text = resultMsg;
+
+        // ★追加：結果発表が出たらボタンを表示する
+        if (returnToTitleButton != null) returnToTitleButton.SetActive(true);
+    }
+
+    // ★追加：ボタンが押されたときに呼ばれるメソッド
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene(titleSceneName);
     }
 }

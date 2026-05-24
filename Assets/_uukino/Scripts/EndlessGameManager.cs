@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // ★追加：シーン移動に必要
 
 public class EndlessGameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class EndlessGameManager : MonoBehaviour
     public SlotCarController playerCar;
 
     [Header("連携するマネージャー")]
-    public EndlessShopManager shopManager; // ★追加：ショップへの参照
+    public EndlessShopManager shopManager;
 
     [Header("エンドレス設定")]
     public int initialMoney = 1000;
@@ -24,6 +25,12 @@ public class EndlessGameManager : MonoBehaviour
     public Text systemMessageText;
     public GameObject shopPanel;
     public GameObject racePanel;
+
+    // --- ★追加：タイトルに戻るボタン関連 ---
+    [Header("シーン遷移")]
+    public GameObject returnToTitleButton; 
+    public string titleSceneName = "TitleScene"; 
+    // ------------------------------------
 
     [Header("効果音")]
     public AudioSource audioSource;
@@ -44,6 +51,9 @@ public class EndlessGameManager : MonoBehaviour
 
     void Start()
     {
+        // ★追加：ゲーム開始時にボタンを隠す
+        if (returnToTitleButton != null) returnToTitleButton.SetActive(false);
+
         CurrentMoney = initialMoney;
         CurrentTime = initialTime;
         TotalGoals = 0;
@@ -94,11 +104,10 @@ public class EndlessGameManager : MonoBehaviour
 
     public void GoToShopPhase()
     {
-        // ★修正：一番安いネタの価格を取得し、それすら買えなければゲームオーバー
         int minPrice = shopManager != null ? shopManager.GetCheapestPrice() : 0;
         if (CurrentMoney < minPrice)
         {
-            StartCoroutine(GameOver("資金ショート！！\nこれ以上ネタを買えません..."));
+            StartCoroutine(GameOver("お金がない！！\nこれ以上ネタを買えません..."));
             return;
         }
 
@@ -106,7 +115,6 @@ public class EndlessGameManager : MonoBehaviour
         if (racePanel != null) racePanel.SetActive(false);
         if (systemMessageText != null) systemMessageText.text = "ネタを購入してください";
 
-        // ★修正：ショップ画面を確実に初期化（リセット）させる
         if (shopManager != null) shopManager.InitializeShop();
     }
 
@@ -189,6 +197,9 @@ public class EndlessGameManager : MonoBehaviour
         if (audioSource && gameOverSE) audioSource.PlayOneShot(gameOverSE);
         if (systemMessageText != null) systemMessageText.text = $"{reason}\n\n【最終スコア】\n完走：{TotalGoals} 皿\n獲得賞金：{TotalEarned} 円";
 
+        // ★追加：ゲームオーバー（終了）時にボタンを表示する
+        if (returnToTitleButton != null) returnToTitleButton.SetActive(true);
+
         yield break; 
     }
 
@@ -197,5 +208,11 @@ public class EndlessGameManager : MonoBehaviour
         if (moneyText != null) moneyText.text = $"所持金: {CurrentMoney} 円";
         if (timerText != null) timerText.text = $"{CurrentTime:F1}";
         if (scoreText != null) scoreText.text = $"完走: {TotalGoals}皿";
+    }
+
+    // --- ★追加：ボタンが押されたときに呼ばれるメソッド ---
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene(titleSceneName);
     }
 }
