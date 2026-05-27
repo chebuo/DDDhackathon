@@ -1944,7 +1944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 555300782}
-  - component: {fileID: 555300781}
+  - component: {fileID: 555300783}
   m_Layer: 0
   m_Name: UIManager_1
   m_TagString: Untagged
@@ -1952,22 +1952,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &555300781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555300780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6033a5cdcc49c01428219e10093c6aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SlotCarUIManager
-  targetCar: {fileID: 0}
-  speedText: {fileID: 301856954}
-  gMeter: {fileID: 433627240}
-  timeText: {fileID: 1473792151}
 --- !u!4 &555300782
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,6 +1967,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &555300783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555300780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6d2b2059770a74799234355864e6ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkCarUIManager
+  speedText: {fileID: 301856954}
+  gMeter: {fileID: 433627240}
+  timeText: {fileID: 1473792151}
 --- !u!1 &583079253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,9 +2065,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EndlessShopManager, Assembly-CSharp
-        m_MethodName: OnStartRaceClicked
+      - m_Target: {fileID: 595618655}
+        m_TargetAssemblyTypeName: OnlineMenuManager, Assembly-CSharp
+        m_MethodName: OnReadyClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2126,6 +2125,9 @@ GameObject:
   m_Component:
   - component: {fileID: 595618652}
   - component: {fileID: 595618653}
+  - component: {fileID: 595618656}
+  - component: {fileID: 595618655}
+  - component: {fileID: 595618654}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -2162,6 +2164,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
   carPrefabName: NetworkSushiCar
   spawnOffset: 2
+--- !u!114 &595618654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595618649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &595618655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595618649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27415a255b9c96641825f408283b6003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnlineMenuManager
+  menuPanel: {fileID: 1258726731}
+  gameManager: {fileID: 595618656}
+  statusText: {fileID: 540589611}
+  readyButton: {fileID: 583079255}
+--- !u!114 &595618656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595618649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba963da61fe501409d9f909ccf91439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OnlineGameManager
+  availableSushi:
+  - {fileID: 11400000, guid: 1db78e303550c0847aaa1cdecf01f5f4, type: 2}
+  - {fileID: 11400000, guid: 1f171485d7cb1f54987d238b46d9408d, type: 2}
+  systemMessageText: {fileID: 821148909}
+  resultText: {fileID: 1826648575}
+  returnToTitleButton: {fileID: 0}
+  audioSource: {fileID: 0}
+  countdownSE: {fileID: 0}
+  startSE: {fileID: 0}
+  resultSE: {fileID: 0}
 --- !u!1 &612401952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,9 +2308,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EndlessShopManager, Assembly-CSharp
-        m_MethodName: OnBuySushiClicked
+      - m_Target: {fileID: 595618655}
+        m_TargetAssemblyTypeName: OnlineMenuManager, Assembly-CSharp
+        m_MethodName: OnSushiSelected
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3187,9 +3249,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EndlessShopManager, Assembly-CSharp
-        m_MethodName: OnBuySushiClicked
+      - m_Target: {fileID: 595618655}
+        m_TargetAssemblyTypeName: OnlineMenuManager, Assembly-CSharp
+        m_MethodName: OnSushiSelected
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
