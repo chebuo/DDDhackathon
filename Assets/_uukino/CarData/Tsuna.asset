@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54eb2405a05acb646b1bec2c2603d7ec, type: 3}
+  m_Name: Tsuna
+  m_EditorClassIdentifier: Assembly-CSharp::CarData
+  sushiName: "\u30DE\u30B0\u30ED"
+  price: 100
+  modelPrefab: {fileID: 3661336662251995956, guid: e77841dd076e07d4e89a675e4aa1c578, type: 3}
+  maxSpeed: 40
+  acceleration: 20
+  friction: 10
+  derailThreshold: 25000

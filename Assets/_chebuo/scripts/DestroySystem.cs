@@ -15,7 +15,7 @@ partial struct DestroySystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         var ecb=new EntityCommandBuffer(Allocator.Temp);
-        foreach (var (transform,entity) in SystemAPI.Query<RefRO<LocalTransform>>().WithAll<DestroyTag>().WithEntityAccess())
+        foreach (var (transform,entity) in SystemAPI.Query<RefRO<LocalToWorld>>().WithAll<DestroyTag>().WithEntityAccess())
         {
             float posX=transform.ValueRO.Position.x;
             if (posX < -126f || posX > 400f)

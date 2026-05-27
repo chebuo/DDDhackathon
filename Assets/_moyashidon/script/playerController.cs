@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -19,14 +20,24 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         Vector2 moveValue = move.ReadValue<Vector2>();
-        rb.linearVelocity = new Vector3(moveValue.x * 5f, moveValue.y, 0f);
+        rb.linearVelocity = new Vector3(moveValue.x * 10f * Time.deltaTime, moveValue.y * 10f * Time.deltaTime, 0f);
             if (shot.triggered)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
                 Destroy(bullet, 5f);
                 Debug.Log("Shot!");
             }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("gameover"))
+        {
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
 }

@@ -63,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 693e53da371a9344ea4713ad3b914e29, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1469296649565224271}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 693e53da371a9344ea4713ad3b914e29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519916279820720980}
   m_SourcePrefab: {fileID: 100100000, guid: 693e53da371a9344ea4713ad3b914e29, type: 3}
 --- !u!1 &3661336662251995956 stripped
 GameObject:
@@ -81,3 +84,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c282dca2e5039434e8abad5bcfae5959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyTagAuthoring
+--- !u!205 &519916279820720980
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661336662251995956}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0.5
+    renderers:
+    - renderer: {fileID: 355034554944994450, guid: 4a19aae13d5db254881fc1fe2254ee70, type: 3}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 355034554944994450, guid: 4a19aae13d5db254881fc1fe2254ee70, type: 3}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 355034554944994450, guid: 4a19aae13d5db254881fc1fe2254ee70, type: 3}
+  m_Enabled: 1
