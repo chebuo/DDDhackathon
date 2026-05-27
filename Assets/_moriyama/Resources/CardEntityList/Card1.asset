@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEntity
   cardId: 1
   name: "\u7389\u5B50"
+  cost: 1000
   power: 1000
+  effectID: 1
   description: TAMAGO
+  cardImage: {fileID: 0}

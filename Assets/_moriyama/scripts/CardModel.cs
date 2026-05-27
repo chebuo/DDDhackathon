@@ -7,8 +7,10 @@ public class CardModel
 {
     public int cardId;
     public string name;
-    //public int cost;
+    public int cost;
     public int power;
+    public int currentPower;
+    public int effectID;
     public string description;
     public Sprite cardImage;
  
@@ -18,9 +20,11 @@ public class CardModel
  
         cardId = cardEntity.cardId;
         name = cardEntity.name;
-        //cost = cardEntity.cost;
+        cost = cardEntity.cost;
         power = cardEntity.power;
         cardImage = cardEntity.cardImage;
         description = cardEntity.description;
+        currentPower = power;
+        effectID = cardEntity.effectID;
     }
 }
