@@ -191,6 +191,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  engineAudioSource: {fileID: 0}
+  seAudioSource: {fileID: 0}
+  sparkSE: {fileID: 0}
+  derailSE: {fileID: 0}
+  goalSE: {fileID: 0}
+  sparkEffectPrefab: {fileID: 4125243530074443952, guid: 318c4262ecf15a14db409dd901f5c9e6, type: 3}
+  sparkEmitter: {fileID: 2287371465388296243}
+  sparkThresholdRatio: 0.1
+  sparkEmissionMultiplier: 0.5
+  derailThreshold: 1500
 --- !u!1 &4791140888372831379
 GameObject:
   m_ObjectHideFlags: 0
