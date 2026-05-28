@@ -47,7 +47,6 @@ public class NetworkCarController : MonoBehaviourPun, IPunObservable
     public bool IsFinished { get; private set; }
     public bool IsDerailed { get; private set; }
     
-    // ★追加：ゲーム開始まで操作を無効にするフラグ
     public bool CanDrive { get; set; } = false;
 
     private Rigidbody rb;
@@ -76,6 +75,17 @@ public class NetworkCarController : MonoBehaviourPun, IPunObservable
         {
             currentLaneIndex = Mathf.Clamp(PhotonNetwork.LocalPlayer.ActorNumber - 1, 0, availableLanes.Length - 1);
             visualLaneFloat = currentLaneIndex; 
+
+            // --- ★ここが追加部分：メインカメラを自分に追従させる ---
+            if (Camera.main != null)
+            {
+                NetworkCameraFollow camFollow = Camera.main.GetComponent<NetworkCameraFollow>();
+                if (camFollow != null)
+                {
+                    camFollow.target = this.transform;
+                }
+            }
+            // ----------------------------------------------------
         }
 
         if (currentCarData != null) ApplyCarData(currentCarData);
@@ -110,7 +120,6 @@ public class NetworkCarController : MonoBehaviourPun, IPunObservable
         }
     }
 
-    // ★追加：ネットワーク経由で他の人の画面でも自分の寿司を変更させるメソッド
     [PunRPC]
     public void RpcSetCarData(int sushiIndex)
     {
@@ -127,7 +136,6 @@ public class NetworkCarController : MonoBehaviourPun, IPunObservable
 
         if (photonView.IsMine)
         {
-            // ★追加：CanDriveがONの時だけタイムを進める
             if (CanDrive) CurrentTime += Time.deltaTime; 
             
             HandleInput();
@@ -145,7 +153,7 @@ public class NetworkCarController : MonoBehaviourPun, IPunObservable
 
     void HandleInput()
     {
-        if (!CanDrive) return; // ★追加：スタート前は操作できない
+        if (!CanDrive) return; 
         if (Keyboard.current == null) return;
         bool isAccelerating = Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed;
 
