@@ -34,6 +34,7 @@ public class SelectController : MonoBehaviour
         index--;
         if(index<0)index=gameSelectData.games.Count-1;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
+        titleText.text = gameSelectData.games[index].gameName;
     }
 
     public void StartGame()
