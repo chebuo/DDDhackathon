@@ -11,6 +11,7 @@ public class CardEntity : ScriptableObject
     public int cost;
     public int power;
     public int effectID;
+    public bool isGuard;
     public string description;
     public Sprite cardImage;
 }

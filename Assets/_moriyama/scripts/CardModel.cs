@@ -13,6 +13,8 @@ public class CardModel
     public int effectID;
     public string description;
     public Sprite cardImage;
+
+    public bool isGuard;
  
     public CardModel(int cardID) // データを受け取り、その処理
     {
@@ -26,5 +28,6 @@ public class CardModel
         description = cardEntity.description;
         currentPower = power;
         effectID = cardEntity.effectID;
+        isGuard = cardEntity.isGuard;
     }
 }

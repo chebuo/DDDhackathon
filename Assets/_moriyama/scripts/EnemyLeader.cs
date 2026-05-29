@@ -3,8 +3,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyLeader :MonoBehaviour, IPointerClickHandler
 {
-    public void OnPointerClick(
-        PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         UIManager manager = FindObjectOfType<UIManager>();
 
@@ -14,6 +13,11 @@ public class EnemyLeader :MonoBehaviour, IPointerClickHandler
         }
 
         if(!manager.attackingCard.canAttack)
+        {
+            return;
+        }
+
+        if(manager.HasGuard(false))
         {
             return;
         }
