@@ -21,6 +21,11 @@ public class PlayerLeader :
             return;
         }
 
+        if(manager.HasGuard(true))
+        {
+            return;
+        }
+
         manager.AttackLeader(
             true,
             manager.attackingCard.model.currentPower);

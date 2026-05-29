@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI playerCostText;
     [SerializeField] TMPro.TextMeshProUGUI enemyCostText;
 
+    const int HAND_MAX = 8;
+
     public CardController selectedCard;
     public CardController attackingCard;
     public bool isPlayerTurn = true;
@@ -63,45 +65,47 @@ public class UIManager : MonoBehaviour
     }
 
     public void EndTurn()
-{
-    if(isPlayerTurn)
     {
-        int playerRemain = Mathf.Min(playerCurrentCost, playerMaxCost);
-
-        playerCarryOverCost = Mathf.Min((playerRemain / 2 / 1000) * 1000, 2000);
-    }
-    else
-    {
-        int enemyRemain = Mathf.Min( enemyCurrentCost, enemyMaxCost);
-
-        enemyCarryOverCost = Mathf.Min((enemyRemain / 2 / 1000)* 1000, 2000);
-    }
-
-    isPlayerTurn = !isPlayerTurn;
-
-    if(isPlayerTurn)
-    {
-        playerMaxCost += 1000;
-
-        playerCurrentCost = playerMaxCost + playerCarryOverCost;
-    }
-    else
-    {
-        enemyMaxCost += 1000;
-
-        enemyCurrentCost = enemyMaxCost + enemyCarryOverCost;
-    }
-
-    UpdateCostUI();
-
-    foreach(CardController card in FindObjectsOfType<CardController>())
-    {
-        if(card.isPlayerCard == isPlayerTurn && card.isInField)
+        if(isPlayerTurn)
         {
-            card.canAttack = true;
+            int playerRemain = Mathf.Min(playerCurrentCost, playerMaxCost);
+
+            playerCarryOverCost = Mathf.Min((playerRemain / 2 / 1000) * 1000, 2000);
+        }
+        else
+        {
+            int enemyRemain = Mathf.Min( enemyCurrentCost, enemyMaxCost);
+
+            enemyCarryOverCost = Mathf.Min((enemyRemain / 2 / 1000)* 1000, 2000);
+        }
+
+        isPlayerTurn = !isPlayerTurn;
+        DrawUntilMaxHand(true);
+        DrawUntilMaxHand(false);
+
+        if(isPlayerTurn)
+        {
+            playerMaxCost += 1000;
+
+            playerCurrentCost = playerMaxCost + playerCarryOverCost;
+        }
+        else
+        {
+            enemyMaxCost += 1000;
+
+            enemyCurrentCost = enemyMaxCost + enemyCarryOverCost;
+        }
+
+        UpdateCostUI();
+
+        foreach(CardController card in FindObjectsOfType<CardController>())
+        {
+            if(card.isPlayerCard == isPlayerTurn && card.isInField)
+            {
+                card.canAttack = true;
+            }
         }
     }
-}
 
     // カードを生成するメソッド
     void CreateCard(int cardId, Transform trans, bool isPlayer, bool inField = false)
@@ -157,5 +161,28 @@ public class UIManager : MonoBehaviour
     {
         playerCostText.text = playerCurrentCost + " / " + playerMaxCost;
         enemyCostText.text = enemyCurrentCost + " / " + enemyMaxCost;
+    }
+    void DrawUntilMaxHand(bool isPlayer)
+    {
+        Transform hand = isPlayer ? playerHand : enemyHand;
+
+        while(hand.childCount < HAND_MAX)
+        {
+            int randomId = Random.Range(0, 20);
+
+            CreateCard(randomId, hand, isPlayer);
+        }
+    }
+    public bool HasGuard(bool playerSide)
+    {
+        foreach(CardController card in FindObjectsOfType<CardController>())
+        {
+            if(card.isPlayerCard == playerSide && card.isInField && card.model.isGuard)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
