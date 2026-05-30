@@ -51,10 +51,10 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5fe577ea253effe4d9f9a9325edc3f22, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 29e19d8516d5a004cada32df7c79ac13, type: 2}
+      objectReference: {fileID: 2100000, guid: 979b954b070b57e4aa068ec04e8c43a0, type: 2}
     - target: {fileID: 919132149155446097, guid: 5fe577ea253effe4d9f9a9325edc3f22, type: 3}
       propertyPath: m_Name
-      value: sushi_LOD2
+      value: kisu_LOD2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
