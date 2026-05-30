@@ -15,11 +15,8 @@ partial struct MoveSystem : ISystem
         SystemAPI.Query<RefRO<Move>, RefRW<LocalTransform>>().WithEntityAccess())
         {
             transform.ValueRW.Position += new float3(1, 0, 0) * move.ValueRO.speed * deltaTime;
-
-            if (transform.ValueRO.Position.x > 0)
-            {
-                ecb.DestroyEntity(entity);
-            }
         }
+        ecb.Playback(state.EntityManager);
+        ecb.Dispose();
     }
 }
