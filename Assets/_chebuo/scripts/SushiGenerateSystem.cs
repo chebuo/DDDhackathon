@@ -20,7 +20,6 @@ partial struct SushiGenerateSystem : ISystem
         foreach (var (buffer,dish) in SystemAPI.Query<DynamicBuffer<SushiGenerate>>().WithAll<DishTag>().WithEntityAccess())
         {
             var index = random.NextInt(buffer.Length);      
-            UnityEngine.Debug.Log($"index:{index}");
             var prefab = buffer[index].sushi;
             var instance = ecb.Instantiate(prefab);
             ecb.AddComponent(instance, new Parent()
