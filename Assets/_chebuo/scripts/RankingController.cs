@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;      
-using Newtonsoft.Json;
 using System;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -10,7 +7,7 @@ using UnityEngine;
 public class RankingController : MonoBehaviour
 {
     bool isLoading=false;
-    public float score=0f;
+    public static float score=0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
