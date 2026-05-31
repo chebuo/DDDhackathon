@@ -1,35 +1,57 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
-using Unity.Collections;
 using Unity.Mathematics;
 
+[BurstCompile]
 partial struct ConfigSystem : ISystem
 {
-    [BurstCompile]
     public void OnCreate(ref SystemState state)
-        => state.RequireForUpdate<Config>();
+    {
+        state.RequireForUpdate<Config>();
+    }
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var config in SystemAPI.Query<RefRO<Config>>())
-        {
-            var con = config.ValueRO;
-            var distance = math.abs(con.endPos.x - con.startPos.x);
-            if (con.interval <= 0f) continue;
-            var count = (int)math.floor(distance / con.interval) + 1;
-            var instances = state.EntityManager.Instantiate(con.prefab, count, Allocator.Temp);
+        var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+        var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
 
-            for (int i = 0; i < instances.Length; i++)
-            {
-                var entity = instances[i];
-                var transform = state.EntityManager.GetComponentData<LocalTransform>(entity);
-                float x = con.startPos.x + i * con.interval;
-                transform.Position = new float3(x, con.startPos.y, con.startPos.z);
-                state.EntityManager.SetComponentData(entity, transform);
-            }
+        var job = new SpawnJob
+        {
+            ecb = ecb
+        };
+
+        state.Dependency = job.ScheduleParallel(state.Dependency);
+    }
+}
+
+[BurstCompile]
+partial struct SpawnJob : IJobEntity
+{
+    public EntityCommandBuffer.ParallelWriter ecb;
+
+    void Execute([ChunkIndexInQuery] int chunkIndex, Entity entity, in Config config)
+    {
+        var distance = math.abs(config.endPos.x - config.startPos.x);
+        if (config.interval <= 0f) return;
+
+        var count = (int)math.floor(distance / config.interval) + 1;
+
+        for (int i = 0; i < count; i++)
+        {
+            var instance = ecb.Instantiate(chunkIndex, config.prefab);
+
+            float x = config.startPos.x + i * config.interval;
+
+            var transform = LocalTransform.FromPosition(
+                new float3(x, config.startPos.y, config.startPos.z)
+            );
+
+            ecb.SetComponent(chunkIndex, instance, transform);
         }
-        state.Enabled = false;
+
+        // Config削除（1回だけ）
+        ecb.RemoveComponent<Config>(chunkIndex, entity);
     }
 }
