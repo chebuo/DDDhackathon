@@ -8,6 +8,7 @@ public class SelectController : MonoBehaviour
     [SerializeField] Image gameIcon;
     [SerializeField] Text titleText;
     [SerializeField] Text scoreText;
+    [SerializeField] GameObject ranking;
     int index=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,12 +18,6 @@ public class SelectController : MonoBehaviour
         if(string.IsNullOrEmpty(gameSelectData.games[index].score))gameSelectData.games[index].score = PlayerPrefs.GetFloat("lookSushiTime", 0f).ToString("F2");
         scoreText.text = gameSelectData.games[index].score;
         Debug.Log(gameSelectData.games[index].score);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void NextClick()
@@ -51,5 +46,9 @@ public class SelectController : MonoBehaviour
     public void MoveTitle()
     {
         SceneManager.LoadScene("DtoSushi");
+    }
+    public void MoveRanking()
+    {
+        ranking.SetActive(!ranking.activeSelf);
     }
 }
