@@ -1448,6 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1a3f02618fdc34994c0d3e17b37ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RankingController
+  gameSelectData: {fileID: 11400000, guid: b0253d73e260aea40b085fe1556e5acf, type: 2}
 --- !u!4 &1560351371
 Transform:
   m_ObjectHideFlags: 0

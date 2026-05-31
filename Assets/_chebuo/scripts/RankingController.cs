@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class RankingController : MonoBehaviour
 {
+    public float score=0;
     bool isLoading=false;
-    public static float score=0f;
+    [SerializeField]GameSelectData gameSelectData;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
+        score = PlayerPrefs.GetFloat("lookSushiTime", 0f);
         try
 		{
 			await UnityServices.InitializeAsync();
@@ -21,7 +23,18 @@ public class RankingController : MonoBehaviour
 			Debug.LogException(e);
 		}
         if(!AuthenticationService.Instance.IsSignedIn)await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        isLoading=true;
+        isLoading=true; 
+        try
+        {
+            var playerScore = await LeaderboardsService.Instance.GetPlayerScoreAsync("lookSushiTime");
+            Debug.Log($"Player score: {playerScore.Score}");
+            gameSelectData.games[0].score = playerScore.Score.ToString();
+            if(score<float.Parse(gameSelectData.games[0].score))score=float.Parse(gameSelectData.games[0].score);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
     void Update()
     {
@@ -37,6 +50,8 @@ public class RankingController : MonoBehaviour
             Debug.Log("Not loading, cannot send score");
             return;
         }
+        PlayerPrefs.SetFloat("lookSushiTime", score);
+        gameSelectData.games[0].score = score.ToString();
         await LeaderboardsService.Instance.AddPlayerScoreAsync("lookSushiTime",score);
     }
 }
