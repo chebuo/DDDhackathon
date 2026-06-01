@@ -4,7 +4,7 @@ using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
 
-public class RankingController : MonoBehaviour
+public class ScoreController : MonoBehaviour
 {
     public float score=0;
     bool isLoading=false;
