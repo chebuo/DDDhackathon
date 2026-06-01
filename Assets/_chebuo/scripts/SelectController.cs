@@ -16,7 +16,7 @@ public class SelectController : MonoBehaviour
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
         if(string.IsNullOrEmpty(gameSelectData.games[index].score))gameSelectData.games[index].score = PlayerPrefs.GetFloat("lookSushiTime", 0f).ToString("F2");
-        scoreText.text = gameSelectData.games[index].score;
+        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
         Debug.Log(gameSelectData.games[index].score);
     }
 
@@ -26,7 +26,7 @@ public class SelectController : MonoBehaviour
         if(index>=gameSelectData.games.Count)index=0;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
-        scoreText.text = gameSelectData.games[index].score;
+        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
     }
 
     public void BackClick()
@@ -35,7 +35,7 @@ public class SelectController : MonoBehaviour
         if(index<0)index=gameSelectData.games.Count-1;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
-        scoreText.text = gameSelectData.games[index].score;
+        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
     }
 
     public void StartGame()
