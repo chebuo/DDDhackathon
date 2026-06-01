@@ -4,15 +4,34 @@ using UnityEngine.UI;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
+using UnityEngine.UIElements;
 
 public class RankingController : MonoBehaviour
 {
     string[] playerNames;
     string[] playerIds;
     float[] allScore;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]GameSelectData gameSelectData;
+    [SerializeField]UIDocument uiDocument;
+    ListView rankingLabel;
+
     async void OnEnable()
     {
+        var root=uiDocument.rootVisualElement;
+        root.style.marginLeft=160;
+        root.style.marginRight=10;
+        root.style.marginTop=10;
+        root.style.marginBottom=20;
+        rankingLabel = root.Q<ListView>("ranking-list");
+
+        rankingLabel.makeItem = () =>
+        {
+            var label=new Label();
+            label.style.unityTextAlign=TextAnchor.MiddleCenter;
+            label.style.fontSize=16;
+            return label;
+        };
+        
         try
         {
             await UnityServices.InitializeAsync();
@@ -36,16 +55,19 @@ public class RankingController : MonoBehaviour
                 playerNames[i] = scores.Results[i].PlayerName;
                 Debug.Log($"Score {i}: {scores.Results[i].Score}, PlayerId: {scores.Results[i].PlayerId}, PlayerName: {scores.Results[i].PlayerName}");
             }
+            rankingLabel.bindItem = (element, index) =>
+            {
+                var data=$"{index+1}. {playerNames[index]} - {gameSelectData.GetScoreHMS(allScore[index])}";
+                var label=element as Label;
+                label.text = data;
+
+            };
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rankingLabel.itemsSource = playerNames;
+        rankingLabel.Rebuild();
     }
 }
