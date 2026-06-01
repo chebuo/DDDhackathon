@@ -1,57 +1,73 @@
 using System;
+using UnityEngine;
+using UnityEngine.UI;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
-using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RankingController : MonoBehaviour
 {
-    public float score=0;
-    bool isLoading=false;
+    string[] playerNames;
+    string[] playerIds;
+    float[] allScore;
     [SerializeField]GameSelectData gameSelectData;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    async void Start()
+    [SerializeField]UIDocument uiDocument;
+    ListView rankingLabel;
+
+    async void OnEnable()
     {
-        score = PlayerPrefs.GetFloat("lookSushiTime", 0f);
-        try
-		{
-			await UnityServices.InitializeAsync();
-            Debug.Log("Unity Services Initialized");
-		}
-		catch (Exception e)
-		{
-			Debug.LogException(e);
-		}
-        if(!AuthenticationService.Instance.IsSignedIn)await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        isLoading=true; 
+        var root=uiDocument.rootVisualElement;
+        root.style.marginLeft=160;
+        root.style.marginRight=10;
+        root.style.marginTop=10;
+        root.style.marginBottom=20;
+        rankingLabel = root.Q<ListView>("ranking-list");
+
+        rankingLabel.makeItem = () =>
+        {
+            var label=new Label();
+            label.style.unityTextAlign=TextAnchor.MiddleCenter;
+            label.style.fontSize=16;
+            return label;
+        };
+        
         try
         {
-            var playerScore = await LeaderboardsService.Instance.GetPlayerScoreAsync("lookSushiTime");
-            Debug.Log($"Player score: {playerScore.Score}");
-            gameSelectData.games[0].score = playerScore.Score.ToString();
-            if(score<float.Parse(gameSelectData.games[0].score))score=float.Parse(gameSelectData.games[0].score);
+            await UnityServices.InitializeAsync();
+            Debug.Log("Unity Services Initialized");
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
-    }
-    void Update()
-    {
-        score+=Time.deltaTime;
-        score=Mathf.Round(score*100)/100;
-    }
-
-    // Update is called once per frame
-    public async void SendScore()
-    {
-        if(!isLoading)
+        if(!AuthenticationService.Instance.IsSignedIn)await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        try
         {
-            Debug.Log("Not loading, cannot send score");
-            return;
+            var scores = await LeaderboardsService.Instance.GetScoresAsync("lookSushiTime", new GetScoresOptions(){Limit=10});
+            allScore = new float[scores.Results.Count];
+            playerIds = new string[scores.Results.Count];
+            playerNames = new string[scores.Results.Count];
+            for (int i = 0; i < scores.Results.Count; i++)
+            {
+                allScore[i] = (float)scores.Results[i].Score;
+                playerIds[i] = scores.Results[i].PlayerId;
+                playerNames[i] = scores.Results[i].PlayerName;
+                Debug.Log($"Score {i}: {scores.Results[i].Score}, PlayerId: {scores.Results[i].PlayerId}, PlayerName: {scores.Results[i].PlayerName}");
+            }
+            rankingLabel.bindItem = (element, index) =>
+            {
+                var data=$"{index+1}. {playerNames[index]} - {gameSelectData.GetScoreHMS(allScore[index])}";
+                var label=element as Label;
+                label.text = data;
+
+            };
         }
-        PlayerPrefs.SetFloat("lookSushiTime", score);
-        gameSelectData.games[0].score = score.ToString();
-        await LeaderboardsService.Instance.AddPlayerScoreAsync("lookSushiTime",score);
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        rankingLabel.itemsSource = playerNames;
+        rankingLabel.Rebuild();
     }
 }
