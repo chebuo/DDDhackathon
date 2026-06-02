@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
@@ -20,8 +19,8 @@ public class RankingController : MonoBehaviour
         var root=uiDocument.rootVisualElement;
         root.style.marginLeft=160;
         root.style.marginRight=10;
-        root.style.marginTop=10;
-        root.style.marginBottom=20;
+        root.style.marginTop=45;
+        root.style.marginBottom=85;
         rankingLabel = root.Q<ListView>("ranking-list");
 
         rankingLabel.makeItem = () =>
@@ -52,7 +51,7 @@ public class RankingController : MonoBehaviour
             {
                 allScore[i] = (float)scores.Results[i].Score;
                 playerIds[i] = scores.Results[i].PlayerId;
-                playerNames[i] = scores.Results[i].PlayerName;
+                playerNames[i] = scores.Results[i].PlayerName.Split('#')[0];
                 Debug.Log($"Score {i}: {scores.Results[i].Score}, PlayerId: {scores.Results[i].PlayerId}, PlayerName: {scores.Results[i].PlayerName}");
             }
             rankingLabel.bindItem = (element, index) =>
@@ -60,7 +59,6 @@ public class RankingController : MonoBehaviour
                 var data=$"{index+1}. {playerNames[index]} - {gameSelectData.GetScoreHMS(allScore[index])}";
                 var label=element as Label;
                 label.text = data;
-
             };
         }
         catch (Exception e)
