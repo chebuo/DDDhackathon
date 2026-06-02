@@ -6,6 +6,7 @@ public class SelectController : MonoBehaviour
 {
     [SerializeField] GameSelectData gameSelectData;
     [SerializeField] Image gameIcon;
+    [SerializeField] Text playerName;
     [SerializeField] Text titleText;
     [SerializeField] Text scoreText;
     [SerializeField] GameObject ranking;
@@ -15,9 +16,15 @@ public class SelectController : MonoBehaviour
     {
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
+        if(string.IsNullOrEmpty(gameSelectData.playerName))gameSelectData.playerName=PlayerPrefs.GetString("playerName", "Player");   
+        playerName.text = gameSelectData.playerName;
         if(string.IsNullOrEmpty(gameSelectData.games[index].score))gameSelectData.games[index].score = PlayerPrefs.GetFloat("lookSushiTime", 0f).ToString("F2");
         scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
         Debug.Log(gameSelectData.games[index].score);
+    }
+    void Update()
+    {
+        playerName.text = gameSelectData.playerName;
     }
 
     public void NextClick()
