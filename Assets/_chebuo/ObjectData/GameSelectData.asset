@@ -33,4 +33,4 @@ MonoBehaviour:
     gameName: "\u5BFF\u53F8\u30B7\u30E5\u30FC\u30C6\u30A3\u30F3\u30B0"
     score: 0
     scoreName: 
-  playerName: chebuo
+  playerName: Player
