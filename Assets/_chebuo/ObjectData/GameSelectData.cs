@@ -31,6 +31,7 @@ public class GameList
     public Sprite gameIcon;
     public string gameName;
     public string score;
+    public string scoreName;
 }
 
 
