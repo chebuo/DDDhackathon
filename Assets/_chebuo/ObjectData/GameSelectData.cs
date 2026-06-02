@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameSelectData : ScriptableObject
 {
     public List<GameList> games=new List<GameList>();
+    public string playerName;
 
     public string GetScoreHMS(float score)
     {
@@ -30,6 +31,7 @@ public class GameList
     public Sprite gameIcon;
     public string gameName;
     public string score;
+    public string scoreName;
 }
 
 

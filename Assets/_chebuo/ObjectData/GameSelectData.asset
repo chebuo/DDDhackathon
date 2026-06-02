@@ -16,12 +16,21 @@ MonoBehaviour:
   - gameScene: chebuo
     gameIcon: {fileID: 21300000, guid: 7b6086ad665a2894da1e57585618d1ac, type: 3}
     gameName: "\u5BFF\u53F8\u30B7\u30DF\u30E5\u30EC\u30FC\u30BF"
+    score: 496.25
+    scoreName: lookSushiTIme
   - gameScene: moriyama
     gameIcon: {fileID: 21300000, guid: 24c97e686ecdeba4a9ae8658c3ffb674, type: 3}
     gameName: "\u5BFF\u53F8\u30AB\u30FC\u30C9"
+    score: 0
+    scoreName: 
   - gameScene: uukino
     gameIcon: {fileID: 21300000, guid: 9475fa0ca26c64745859226519200894, type: 3}
     gameName: "\u5BFF\u53F8\u30EC\u30FC\u30B9"
+    score: 0
+    scoreName: 
   - gameScene: strat
     gameIcon: {fileID: 21300000, guid: 5e46b47d8fc64ae41a246864a3147156, type: 3}
     gameName: "\u5BFF\u53F8\u30B7\u30E5\u30FC\u30C6\u30A3\u30F3\u30B0"
+    score: 0
+    scoreName: 
+  playerName: chebuo

@@ -6,18 +6,28 @@ public class SelectController : MonoBehaviour
 {
     [SerializeField] GameSelectData gameSelectData;
     [SerializeField] Image gameIcon;
+    [SerializeField] Text playerName;
     [SerializeField] Text titleText;
     [SerializeField] Text scoreText;
     [SerializeField] GameObject ranking;
-    int index=0;
+    public static int index=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
-        if(string.IsNullOrEmpty(gameSelectData.games[index].score))gameSelectData.games[index].score = PlayerPrefs.GetFloat("lookSushiTime", 0f).ToString("F2");
-        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
+        if(string.IsNullOrEmpty(gameSelectData.playerName))gameSelectData.playerName=PlayerPrefs.GetString("playerName", "Player");   
+        playerName.text = gameSelectData.playerName;
+        if(string.IsNullOrEmpty(gameSelectData.games[index].score)&&!string.IsNullOrEmpty(gameSelectData.games[index].scoreName))
+        {
+            gameSelectData.games[index].score = PlayerPrefs.GetFloat(gameSelectData.games[index].scoreName, 0f).ToString("F2");
+        }
+        if(!string.IsNullOrEmpty(gameSelectData.games[index].score))scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
         Debug.Log(gameSelectData.games[index].score);
+    }
+    void Update()
+    {
+        playerName.text = gameSelectData.playerName;
     }
 
     public void NextClick()
@@ -26,7 +36,9 @@ public class SelectController : MonoBehaviour
         if(index>=gameSelectData.games.Count)index=0;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
-        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
+        ranking.SetActive(false);
+        ranking.SetActive(true);
+        if(!string.IsNullOrEmpty(gameSelectData.games[index].score))scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
     }
 
     public void BackClick()
@@ -35,7 +47,9 @@ public class SelectController : MonoBehaviour
         if(index<0)index=gameSelectData.games.Count-1;
         gameIcon.sprite = gameSelectData.games[index].gameIcon;
         titleText.text = gameSelectData.games[index].gameName;
-        scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
+        ranking.SetActive(false);
+        ranking.SetActive(true);
+        if(!string.IsNullOrEmpty(gameSelectData.games[index].score))scoreText.text = gameSelectData.GetScoreHMS(float.Parse(gameSelectData.games[index].score));
     }
 
     public void StartGame()
