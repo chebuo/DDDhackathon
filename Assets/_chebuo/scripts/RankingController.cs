@@ -43,7 +43,7 @@ public class RankingController : MonoBehaviour
         if(!AuthenticationService.Instance.IsSignedIn)await AuthenticationService.Instance.SignInAnonymouslyAsync();
         try
         {
-            var scores = await LeaderboardsService.Instance.GetScoresAsync("lookSushiTime", new GetScoresOptions(){Limit=10});
+            var scores = await LeaderboardsService.Instance.GetScoresAsync(gameSelectData.games[SelectController.index].scoreName, new GetScoresOptions(){Limit=10});
             allScore = new float[scores.Results.Count];
             playerIds = new string[scores.Results.Count];
             playerNames = new string[scores.Results.Count];
