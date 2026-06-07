@@ -16,7 +16,7 @@ MonoBehaviour:
   - gameScene: chebuo
     gameIcon: {fileID: 21300000, guid: 7b6086ad665a2894da1e57585618d1ac, type: 3}
     gameName: "\u5BFF\u53F8\u30B7\u30DF\u30E5\u30EC\u30FC\u30BF"
-    score: 496.25
+    score: 0
     scoreName: lookSushiTime
   - gameScene: moriyama
     gameIcon: {fileID: 21300000, guid: 24c97e686ecdeba4a9ae8658c3ffb674, type: 3}
