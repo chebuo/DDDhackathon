@@ -14,20 +14,28 @@ public class RankingController : MonoBehaviour
     [SerializeField]UIDocument uiDocument;
     ListView rankingLabel;
 
+    void Awake()
+    {
+        var panel = uiDocument.panelSettings;
+
+        panel.scaleMode = PanelScaleMode.ScaleWithScreenSize;
+        panel.match = 0.5f;
+    }
     async void OnEnable()
     {
         var root=uiDocument.rootVisualElement;
-        root.style.marginLeft=160;
-        root.style.marginRight=10;
-        root.style.marginTop=45;
-        root.style.marginBottom=85;
+        root.style.marginLeft=370;
+        root.style.marginRight=30;
+        root.style.marginTop=100;
+        root.style.marginBottom=200;
         rankingLabel = root.Q<ListView>("ranking-list");
-
+        rankingLabel.fixedItemHeight = 70;
         rankingLabel.makeItem = () =>
         {
             var label=new Label();
             label.style.unityTextAlign=TextAnchor.MiddleCenter;
-            label.style.fontSize=16;
+            label.style.fontSize=40;
+            label.style.height=StyleKeyword.Auto;
             return label;
         };
         
