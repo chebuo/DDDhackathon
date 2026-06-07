@@ -144,7 +144,8 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -944628639613478452, guid: 2a6f0222bec6ebc4b8c2b91491bd0caa, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -954,7 +955,7 @@ PlayerSettings:
   cloudProjectId: ae51c752-1d9f-48c9-a151-ed16862777b0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: HDRP_test
+  projectName: sushietu
   organizationId: chebuo
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
