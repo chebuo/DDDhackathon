@@ -26,7 +26,7 @@ public class RankingController : MonoBehaviour
         var root=uiDocument.rootVisualElement;
         root.style.marginLeft=370;
         root.style.marginRight=30;
-        root.style.marginTop=100;
+        root.style.marginTop=110;
         root.style.marginBottom=200;
         rankingLabel = root.Q<ListView>("ranking-list");
         rankingLabel.fixedItemHeight = 70;
